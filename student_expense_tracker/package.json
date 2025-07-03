@@ -9,6 +9,6 @@
     "test": "node test.js"
   },
   "devDependencies": {
-    "eslint": "^8.0.0"
+    "eslint": "^8.57.1"
   }
 }
