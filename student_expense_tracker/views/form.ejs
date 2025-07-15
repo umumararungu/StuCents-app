@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StuCents</title>
+  <link rel="stylesheet" href="/stylesform.css" />
+</head>
+<body>
+  <h2>Enter Your Expense</h2>
+  <div class="actions">
+  <a href="/expenses" class="btn-view">📄 View Expense History</a>
+</div>
+  <form action="/add-expense" method="POST">
+    <label>Name/Title:</label>
+    <input type="text" name="title" required placeholder="Enter the title">
+
+    <label>Amount Spent:</label>
+    <input type="number" name="amount" required placeholder="How much">
+
+    <label>Category:</label>
+    <select name="category" required>
+      <option value="Food">Food</option>
+      <option value="Transport">Transport</option>
+      <option value="Entertainment">Entertainment</option>
+    </select>
+
+    <label>Priority:</label>
+    <select name="priority" required>
+      <option value="Need">Need</option>
+      <option value="Want">Want</option>
+      <option value="Luxury">Luxury</option>
+    </select>
+
+    <label>Reason:</label>
+    <textarea name="reason" required placeholder="Description"></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

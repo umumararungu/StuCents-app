@@ -1,0 +1,110 @@
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f4f4; /* light gray */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  margin-top: 2rem;
+  color: #008080; /* teal */
+  font-size: 2rem;
+}
+
+/* Form container */
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Labels */
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #008080;
+}
+
+/* Inputs, Selects, Textareas */
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border 0.2s ease-in-out;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #008080;
+  outline: none;
+}
+
+/* Textarea */
+form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Submit Button */
+form button {
+  width: 100%;
+  background-color: #008080;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #006666;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.actions {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn-view {
+  background-color: #008080;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn-view:hover {
+  background-color: #006666;
+}

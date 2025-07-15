@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Expenses</title>
+  <link rel="stylesheet" href="/stylesexpenses.css">
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="btn-back">← Go Back</a>
+    <h2>Expense History</h2>
+    <a href="/" class="btn">Add New Expense</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Amount</th>
+          <th>Category</th>
+          <th>Priority</th>
+          <th>Date</th>
+          <th>Reason</th>
+          <th colspan="2">Actions</th>
+        </tr>
+      </thead> 
+      <tbody>
+        <% expenses.forEach(exp => { %>
+          <tr>
+            <td><%= exp.title %></td>
+            <td>$<%= exp.amount.toFixed(2) %></td>
+            <td><%= exp.category %></td>
+            <td><%= exp.priority %></td>
+            <td><%= new Date(exp.date).toLocaleString() %></td>
+            <td><%= exp.reason %></td>
+            <td>
+              <a href="/edit/<%= exp._id %>" class="btn-edit">Edit</a>
+              <form action="/delete/<%= exp._id %>" method="POST" style="display:inline;"></td>
+                <td>
+                <button type="submit" class="btn-delete">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

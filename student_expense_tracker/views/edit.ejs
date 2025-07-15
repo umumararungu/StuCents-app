@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Expense</title>
+  <link rel="stylesheet" href="/stylesform.css">
+</head>
+<body>
+  <div class="container">
+    <a href="/expenses" class="btn-back">← Go Back</a>
+    <h2>Edit Expense</h2>
+    <form action="/edit/<%= expense._id %>" method="POST">
+      <label>Title:</label>
+      <input type="text" name="title" value="<%= expense.title %>" required>
+
+      <label>Amount Spent:</label>
+      <input type="number" name="amount" value="<%= expense.amount %>" required>
+
+      <label>Category:</label>
+      <select name="category" required>
+        <option value="Food" <%= expense.category === "Food" ? "selected" : "" %>>Food</option>
+        <option value="Transport" <%= expense.category === "Transport" ? "selected" : "" %>>Transport</option>
+        <option value="Entertainment" <%= expense.category === "Entertainment" ? "selected" : "" %>>Entertainment</option>
+      </select>
+
+      <label>Priority:</label>
+      <select name="priority" required>
+        <option value="Need" <%= expense.priority === "Need" ? "selected" : "" %>>Need</option>
+        <option value="Want" <%= expense.priority === "Want" ? "selected" : "" %>>Want</option>
+        <option value="Luxury" <%= expense.priority === "Luxury" ? "selected" : "" %>>Luxury</option>
+      </select>
+
+      <label>Reason:</label>
+      <textarea name="reason" required><%= expense.reason %></textarea>
+
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</body>
+</html>
