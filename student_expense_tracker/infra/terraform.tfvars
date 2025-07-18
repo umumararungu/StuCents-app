@@ -1,0 +1,1 @@
+mongo_uri = "mongodb+srv://cmpano:c7zArYzFZIAUEosP@expensescluster.3lc1jdf.mongodb.net/expensesDB"
