@@ -1,1 +1,1 @@
-mongo_uri = "mongodb+srv://cmpano:c7zArYzFZIAUEosP@expensescluster.3lc1jdf.mongodb.net/expensesDB"
+mongo_uri = "MONGO_URI=mongodb://127.0.0.1:27017/expensesDB"
