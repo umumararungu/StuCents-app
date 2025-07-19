@@ -63,12 +63,9 @@ resource "azurerm_container_app" "stucents_app" {
         name  = "MONGO_URI"
         value =  "MONGO_URI=mongodb://127.0.0.1:27017/expensesDB"
       }
+      
     }
 
-    # scale = {
-    #   minreplicas = 1
-    #   maxreplicas = 1
-    # }
 
   }
 
