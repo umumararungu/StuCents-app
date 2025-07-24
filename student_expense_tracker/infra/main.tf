@@ -9,31 +9,28 @@ terraform {
 provider "azurerm" {
   features {}
   subscription_id = "8751967a-6d07-4ba9-ab04-ffc9bfdef46d"
+  skip_provider_registration = true
 }
 
 resource "azurerm_resource_group" "rg" {
   name     = "stucents-rg"
-  location = "East US"
+  location = "francecentral"
 }
 
-resource "azurerm_app_service_plan" "plan" {
+resource "azurerm_service_plan" "plan" {
   name                = "stucents-plan"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  kind                = "Linux"
-  reserved            = true
+  os_type             = "Linux"
 
-  sku {
-    tier = "Basic"
-    size = "B1"
-  }
+  sku_name = "B1"
 }
 
 resource "azurerm_linux_web_app" "webapp" {
   name                = "stucents-webapp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  service_plan_id     = azurerm_app_service_plan.plan.id
+  service_plan_id     = azurerm_service_plan.plan.id
 
   site_config {
     always_on = true
@@ -49,14 +46,14 @@ resource "azurerm_linux_web_app" "webapp" {
 
 }
 
-resource "azurerm_app_service_source_control" "example" {
+resource "azurerm_app_service_source_control" "stucentsrepo" {
   app_id   = azurerm_linux_web_app.webapp.id
   repo_url = "https://github.com/umumararungu/StuCents-app"
   branch   = "main"
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                = "stucents-registry"
+  name                = "stucentsregistry"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = "Basic"
@@ -65,7 +62,7 @@ resource "azurerm_container_registry" "acr" {
 
 resource "azurerm_user_assigned_identity" "identity" {
   name                = "stucents-identity"
-  location            = "eastus"
+  location            = "francecentral"
   resource_group_name = azurerm_resource_group.rg.name
 }
 
@@ -87,13 +84,13 @@ resource "azurerm_log_analytics_workspace" "logs" {
 
 resource "azurerm_container_app_environment" "env" {
   name                       = "stucents-env"
-  location                   = "eastus"
+  location                   = "francecentral"
   resource_group_name        = azurerm_resource_group.rg.name
   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
 }
 
-resource "azurerm_container_app" "stucents_app" {
-  name                         = "stucents-app"
+resource "azurerm_container_app" "stucentsapp" {
+  name                         = "stucentsapp1"
   container_app_environment_id = azurerm_container_app_environment.env.id
   resource_group_name          = azurerm_resource_group.rg.name
   revision_mode                = "Single"
@@ -101,9 +98,9 @@ resource "azurerm_container_app" "stucents_app" {
   template {
     container {
       name   = "stucents"
-      image  = "${azurerm_container_registry.acr.login_server}/stucents-app:v1"
+      image  = "stucentsregistry.azurecr.io/stucents-app:v1"
       cpu    = 0.5
-      memory = "1.0Gi"
+      memory = "1Gi"
 
       env {
         name  = "MONGO_URI"
