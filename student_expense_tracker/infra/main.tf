@@ -46,11 +46,11 @@ resource "azurerm_linux_web_app" "webapp" {
 
 }
 
-resource "azurerm_app_service_source_control" "stucentsrepo" {
-  app_id   = azurerm_linux_web_app.webapp.id
-  repo_url = "https://github.com/umumararungu/StuCents-app"
-  branch   = "main"
-}
+# resource "azurerm_app_service_source_control" "stucentsrepo" {
+#   app_id   = azurerm_linux_web_app.webapp.id
+#   repo_url = "https://github.com/umumararungu/StuCents-app"
+#   branch   = "main"
+# }
 
 resource "azurerm_container_registry" "acr" {
   name                = "stucentsregistry"
@@ -90,7 +90,7 @@ resource "azurerm_container_app_environment" "env" {
 }
 
 resource "azurerm_container_app" "stucentsapp" {
-  name                         = "stucentsapp1"
+  name                         = "stucentsapp"
   container_app_environment_id = azurerm_container_app_environment.env.id
   resource_group_name          = azurerm_resource_group.rg.name
   revision_mode                = "Single"
@@ -98,7 +98,7 @@ resource "azurerm_container_app" "stucentsapp" {
   template {
     container {
       name   = "stucents"
-      image  = "stucentsregistry.azurecr.io/stucents-app:v1"
+      image  = "stucentsregistry1.azurecr.io/stucents-app:v1"
       cpu    = 0.5
       memory = "1Gi"
 
@@ -132,5 +132,11 @@ resource "azurerm_container_app" "stucentsapp" {
     server   = azurerm_container_registry.acr.login_server
     identity = azurerm_user_assigned_identity.identity.id
   }
+
+  secret {
+    name  = "mongo-uri"
+    value = "mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  }
+
 }
 

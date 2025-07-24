@@ -22,7 +22,10 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect('mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB error:', err));
 
