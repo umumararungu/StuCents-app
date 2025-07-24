@@ -90,7 +90,7 @@ resource "azurerm_container_app_environment" "env" {
 }
 
 resource "azurerm_container_app" "stucentsapp" {
-  name                         = "stucentsapp"
+  name                         = "stucentsapp1"
   container_app_environment_id = azurerm_container_app_environment.env.id
   resource_group_name          = azurerm_resource_group.rg.name
   revision_mode                = "Single"
@@ -98,7 +98,7 @@ resource "azurerm_container_app" "stucentsapp" {
   template {
     container {
       name   = "stucents"
-      image  = "stucentsregistry1.azurecr.io/stucents-app:v1"
+      image  = "stucentsregistry.azurecr.io/stucents-app1:v1"
       cpu    = 0.5
       memory = "1Gi"
 
