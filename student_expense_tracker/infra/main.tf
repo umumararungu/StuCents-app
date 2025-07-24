@@ -4,9 +4,52 @@ provider "azurerm" {
   subscription_id = "a0973ce3-7817-4d56-b058-f11c6c32ad0d"
 }
 
+provider "azurerm" {
+  features {}
+}
+
 resource "azurerm_resource_group" "rg" {
-  name     = "stucents-resouce-group"
-  location = "eastus"
+  name     = "stucents-rg"
+  location = "East US"
+}
+
+resource "azurerm_app_service_plan" "plan" {
+  name                = "stucents-plan"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  kind                = "Linux"
+  reserved            = true
+
+  sku {
+    tier = "Basic"
+    size = "B1"
+  }
+}
+
+resource "azurerm_linux_web_app" "webapp" {
+  name                = "stucents-webapp"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  service_plan_id     = azurerm_app_service_plan.plan.id
+
+  site_config {
+    always_on = true
+
+    application_stack {
+      node_version = "16-lts"
+    }
+  }
+
+  app_settings = {
+    "MONGODB_URI" = var.mongodb_uri
+  }
+
+}
+
+resource "azurerm_app_service_source_control" "example" {
+  app_id   = azurerm_linux_web_app.webapp.id
+  repo_url = "https://github.com/umumararungu/StuCents-app"
+  branch   = "main"
 }
 
 resource "azurerm_container_registry" "acr" {
