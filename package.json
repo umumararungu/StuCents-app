@@ -1,0 +1,23 @@
+{
+  "name": "stucents-app-1",
+  "version": "1.0.0",
+  "description": "StuCents is a Node.js and MongoDB-based web app that helps students track their spending and prioritize needs-based expenses.",
+  "main": "./student_expense_tracker/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.31.0"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.16.4"
+  }
+}
