@@ -1,6 +1,6 @@
 ### PUBLIC URL
 
-stucents-app--k94doq2.jollybeach-8b3e3c62.eastus.azurecontainerapps.io
+stucentsapp1--0000003.delightfulsand-0c9a81e8.francecentral.azurecontainerapps.io
 
 
 

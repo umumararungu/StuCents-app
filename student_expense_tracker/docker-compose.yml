@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: stucents-app1
+    ports:
+      - "3000:3000"
+    env_file:
+      - student_expense_tracker\.env

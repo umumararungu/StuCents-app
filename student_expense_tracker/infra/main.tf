@@ -6,44 +6,16 @@ terraform {
     }
   }
 }
+
 provider "azurerm" {
   features {}
-  subscription_id = "8751967a-6d07-4ba9-ab04-ffc9bfdef46d"
-  # skip_provider_registration = true
+  subscription_id            = "8751967a-6d07-4ba9-ab04-ffc9bfdef46d"
+  skip_provider_registration = true
 }
 
 resource "azurerm_resource_group" "rg" {
   name     = "stucents-rg"
   location = "francecentral"
-}
-
-resource "azurerm_app_service_plan" "plan" {
-  name                = "example-appserviceplan"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
-}
-
-resource "azurerm_app_service" "webapp" {
-  name                = "stucents-1-webapp"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  app_service_plan_id = azurerm_app_service_plan.plan.id
-
-  site_config {
-    dotnet_framework_version = "v4.0"
-    scm_type                 = "LocalGit"
-    
-  }
-
-  app_settings = {
-    "MONGODB_URI" = var.mongodb_uri
-  }
-
 }
 
 resource "azurerm_container_registry" "acr" {
@@ -65,8 +37,6 @@ resource "azurerm_role_assignment" "acr_pull" {
   role_definition_name = "AcrPull"
   scope                = azurerm_container_registry.acr.id
 }
-
-
 
 resource "azurerm_log_analytics_workspace" "logs" {
   name                = "azure-log1"
@@ -98,24 +68,20 @@ resource "azurerm_container_app" "stucentsapp" {
 
       env {
         name  = "MONGO_URI"
-        value =  "MONGO_URI=mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        value = "mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
       }
-      
     }
-
-
   }
 
-    ingress {
-      external_enabled = true
-      target_port      = 3000
-      transport        = "auto"
-      traffic_weight {
+  ingress {
+    external_enabled = true
+    target_port      = 3000
+    transport        = "auto"
+    traffic_weight {
       percentage      = 100
       latest_revision = true
     }
-
-    }
+  }
 
   identity {
     type         = "UserAssigned"
@@ -131,6 +97,9 @@ resource "azurerm_container_app" "stucentsapp" {
     name  = "mongo-uri"
     value = "mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   }
-
 }
 
+output "container_app_url" {
+  value = azurerm_container_app.stucentsapp.latest_revision_fqdn
+  description = "The public URL of the deployed StuCents Container App"
+}
