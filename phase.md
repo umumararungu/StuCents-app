@@ -1,11 +1,8 @@
 ### PUBLIC URL
 
-stucentsapp1--0000003.delightfulsand-0c9a81e8.francecentral.azurecontainerapps.io
-
-
+https://stucentsapp1--0000003.delightfulsand-0c9a81e8.francecentral.azurecontainerapps.io/
 
 ---
-
 
 ## Reflection on Challenges
 
