@@ -43,6 +43,12 @@ This phase helped build a solid understanding of how modern cloud apps are deplo
 ### AZURE RESOURCES SCREENSHOT
 
 ![Azure Resources](screenshots/azure-resources.png)
+![Azure container App](screenshots/azure-container-app.png)
+![Azure logs](screenshots/azure-logs.png)
+![Azure  Identity](screenshots/azure-identity.png)
+![Azure envirnoment](screenshots/azure-env.png)
+![Azure Container Registry](screenshots/azure-container-registry.png)
+
 
 ### Peer review Link
 https://github.com/Idiane05/habit-tracker/pull/7#pullrequestreview-3052952656

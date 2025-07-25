@@ -2,23 +2,49 @@
 
 StuCents is a Node.js and MongoDB-based web app that helps students track their spending and prioritize needs-based expenses.
 
-## 🚀 Features
+## Teck Stack
 
-- Add, view, and categorize expenses
-- Prioritize based on needs
-- RESTful API with Express
-- MongoDB data storage
+- Node.js + Express
+- MongoDB Atlas (cloud database)
+- EJS (for HTML views)
+- Docker
+- Terraform (for Infrastructure as Code)
+- Azure Container Apps
 
 ---
 
-## 🐳 Docker-based Setup Instructions
+## Features
 
-### ✅ Prerequisites
+- Add and save expenses (title, amount, category, priority, reason)
+- View, edit, and delete expenses
+- Connects to a secure MongoDB Atlas database
+- Deployed to Azure using Docker and Terraform
+
+## Local Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/umumararungu-cynthia/stucents-app.git
+cd stucents-app
 
 - Docker installed: [Install Docker](https://docs.docker.com/get-docker/)
-- MongoDB URI (MongoDB Atlas or local instance)
+- MongoDB URI (MongoDB Atlas)
 - `.env` file with:
 
 ```env
 PORT=3000
-MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/stucents
+MONGO_URI=mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+```
+
+## Install Dependencies
+
+``` bash
+npm install
+```
+
+## Run the App
+``` bash
+npm start
+```
+
