@@ -1,0 +1,15 @@
+variable "mongodb_uri" {
+  description = "MongoDB Atlas URI"
+  type        = string
+}
+
+variable "github_repo_url" {
+  description = "GitHub repository to deploy from"
+  type        = string
+}
+
+variable "github_branch" {
+  description = "GitHub branch to deploy"
+  type        = string
+  default     = "main"
+}
