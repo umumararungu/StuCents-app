@@ -9,7 +9,7 @@ terraform {
 provider "azurerm" {
   features {}
   subscription_id = "8751967a-6d07-4ba9-ab04-ffc9bfdef46d"
-  skip_provider_registration = true
+  # skip_provider_registration = true
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -17,27 +17,27 @@ resource "azurerm_resource_group" "rg" {
   location = "francecentral"
 }
 
-resource "azurerm_service_plan" "plan" {
-  name                = "stucents-plan"
+resource "azurerm_app_service_plan" "plan" {
+  name                = "example-appserviceplan"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  os_type             = "Linux"
 
-  sku_name = "B1"
+  sku {
+    tier = "Standard"
+    size = "S1"
+  }
 }
 
-resource "azurerm_linux_web_app" "webapp" {
-  name                = "stucents-webapp"
+resource "azurerm_app_service" "webapp" {
+  name                = "stucents-1-webapp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  service_plan_id     = azurerm_service_plan.plan.id
+  app_service_plan_id = azurerm_app_service_plan.plan.id
 
   site_config {
-    always_on = true
-
-    application_stack {
-      node_version = "16-lts"
-    }
+    dotnet_framework_version = "v4.0"
+    scm_type                 = "LocalGit"
+    
   }
 
   app_settings = {
@@ -45,12 +45,6 @@ resource "azurerm_linux_web_app" "webapp" {
   }
 
 }
-
-# resource "azurerm_app_service_source_control" "stucentsrepo" {
-#   app_id   = azurerm_linux_web_app.webapp.id
-#   repo_url = "https://github.com/umumararungu/StuCents-app"
-#   branch   = "main"
-# }
 
 resource "azurerm_container_registry" "acr" {
   name                = "stucentsregistry"
@@ -104,7 +98,7 @@ resource "azurerm_container_app" "stucentsapp" {
 
       env {
         name  = "MONGO_URI"
-        value =  "MONGO_URI=mongodb://127.0.0.1:27017/expensesDB"
+        value =  "MONGO_URI=mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
       }
       
     }
