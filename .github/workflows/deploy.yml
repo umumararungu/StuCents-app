@@ -8,6 +8,7 @@ on:
 env:
   ACR_NAME: stucentsregistry
   IMAGE_NAME: stucents-app1
+  IMAGE_TAG: v1
   RESOURCE_GROUP: stucents-rg
   CONTAINER_APP_NAME: stucentsapp1
   LOCATION: francecentral
@@ -44,5 +45,16 @@ jobs:
     - name: Build Docker image
       run: docker build -t stucentsregistry.azurecr.io/stucents-app1:v1 .
 
+    - name: Scan Docker image with Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+        format: table
+        exit-code: 0
+        ignore-unfixed: true
+
     - name: Push Docker image
       run: docker push stucentsregistry.azurecr.io/stucents-app1:v1
+
+
+

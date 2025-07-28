@@ -2,12 +2,12 @@
   "name": "student-expense-tracker",
   "version": "1.0.1",
   "type": "module",
-  "main": "app.js",
+  "main": "server.js",
   "engines": {
     "node": ">=18 <=20"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "lint": "eslint .",
     "release": "standard-version",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles --forceExit"
