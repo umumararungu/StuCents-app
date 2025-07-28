@@ -108,3 +108,20 @@ form button:hover {
 .btn-view:hover {
   background-color: #006666;
 }
+
+.btn-back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #008080;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #f0f4f4;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #d9f3f3;
+}
