@@ -32,15 +32,15 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      working-directory: .\student_expense_tracker\infra\
+      working-directory: student_expense_tracker\infra\
 
     - name: Terraform Plan
       run: terraform plan
-      working-directory: .\student_expense_tracker\infra\
+      working-directory: student_expense_tracker\infra\
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
-      working-directory: .\student_expense_tracker\infra\
+      working-directory: student_expense_tracker\infra\
 
     - name: Azure ACR login using access token
       run: |
