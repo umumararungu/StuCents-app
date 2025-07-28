@@ -12,6 +12,7 @@ env:
   RESOURCE_GROUP: stucents-rg
   CONTAINER_APP_NAME: stucentsapp1
   LOCATION: francecentral
+  ACR_LOGIN_SERVER: stucentsregistry.azurecr.io
 
 jobs:
   deploy:
@@ -38,23 +39,20 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve
 
-    - name: Log in to ACR
+    - name: Azure ACR login using access token
       run: |
-        az acr login --name stucentsregistry
+        az acr login --name $ACR_NAME --expose-token | jq -r '.accessToken' | docker login $ACR_LOGIN_SERVER -u 00000000-0000-0000-0000-000000000000 --password-stdin
 
     - name: Build Docker image
-      run: docker build -t stucentsregistry.azurecr.io/stucents-app1:v1 .
+      run: docker build -t $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG .
 
     - name: Scan Docker image with Trivy
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+        image-ref: ${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
         format: table
         exit-code: 0
         ignore-unfixed: true
 
     - name: Push Docker image
-      run: docker push stucentsregistry.azurecr.io/stucents-app1:v1
-
-
-
+      run: docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
