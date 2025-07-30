@@ -24,3 +24,10 @@ variable "location" {
   type        = string
   default     = "francecentral"
 }
+
+variable "image_name" {
+  default = "stucents-app1"
+}
+variable "image_tag" {
+  default = "latest"
+}

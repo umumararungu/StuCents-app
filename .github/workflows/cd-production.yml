@@ -65,3 +65,8 @@ jobs:
 
     - name: Push Docker image
       run: docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+
+    - name: Terraform Apply
+      run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
+      working-directory: student_expense_tracker/infra
+      

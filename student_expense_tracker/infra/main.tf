@@ -62,7 +62,7 @@ resource "azurerm_container_app" "stucentsapp" {
   template {
     container {
       name   = "stucents"
-      image  = "stucentsregistry.azurecr.io/stucents-app1:latest"
+      image = "${azurerm_container_registry.acr.login_server}/${var.image_name}:${var.image_tag}"
       cpu    = 0.5
       memory = "1Gi"
 
