@@ -33,19 +33,19 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      working-directory: student_expense_tracker/infra
+      working-directory: student_expense_tracker/infra/staging
 
     - name: Terraform Plan
       run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars
-      working-directory: student_expense_tracker/infra
+      working-directory: student_expense_tracker/infra/staging
 
     - name: Terraform Apply
       run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
-      working-directory: student_expense_tracker/infra
+      working-directory: student_expense_tracker/infra/staging
 
     - name: Show Staging App URL
       run: terraform output -raw container_app_url
-      working-directory: student_expense_tracker/infra
+      working-directory: student_expense_tracker/infra/staging
 
     - name: Azure ACR login using access token
       run: |

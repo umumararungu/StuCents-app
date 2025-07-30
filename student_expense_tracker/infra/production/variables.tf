@@ -29,5 +29,5 @@ variable "image_name" {
   default = "stucents-app1"
 }
 variable "image_tag" {
-  default = "latest"
+  default = "staging"
 }
