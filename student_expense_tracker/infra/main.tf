@@ -74,6 +74,7 @@ resource "azurerm_container_app" "stucentsapp" {
     }
   }
 
+
   ingress {
     external_enabled = true
     target_port      = 3000
