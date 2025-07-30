@@ -36,11 +36,11 @@ jobs:
       working-directory: student_expense_tracker/infra/staging
 
     - name: Terraform Plan
-      run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars
+      run: terraform plan 
       working-directory: student_expense_tracker/infra/staging
 
     - name: Terraform Apply
-      run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
+      run: terraform apply -auto-approve
       working-directory: student_expense_tracker/infra/staging
 
     - name: Show Staging App URL
