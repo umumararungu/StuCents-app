@@ -66,6 +66,7 @@ resource "azurerm_container_app" "stucentsapp" {
       cpu    = 0.5
       memory = "1Gi"
 
+
       env {
         name  = "MONGO_URI"
         value = "mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
