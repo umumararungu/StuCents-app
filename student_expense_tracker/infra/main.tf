@@ -14,12 +14,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "stucents-rg"
+  name     = "stucents-${var.environment}-rg"
   location = "francecentral"
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                = "stucentsregistry"
+  name                = "stucentsregistry${var.environment}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = "Basic"
@@ -27,7 +27,7 @@ resource "azurerm_container_registry" "acr" {
 }
 
 resource "azurerm_user_assigned_identity" "identity" {
-  name                = "stucents-identity"
+  name                = "stucents-${var.environment}-identity"
   location            = "francecentral"
   resource_group_name = azurerm_resource_group.rg.name
 }
@@ -39,7 +39,7 @@ resource "azurerm_role_assignment" "acr_pull" {
 }
 
 resource "azurerm_log_analytics_workspace" "logs" {
-  name                = "azure-log1"
+  name                = "stucents-${var.environment}-logs"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "PerGB2018"
@@ -47,14 +47,14 @@ resource "azurerm_log_analytics_workspace" "logs" {
 }
 
 resource "azurerm_container_app_environment" "env" {
-  name                       = "stucents-env"
+  name                       = "stucents-${var.environment}-env"
   location                   = "francecentral"
   resource_group_name        = azurerm_resource_group.rg.name
   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
 }
 
 resource "azurerm_container_app" "stucentsapp" {
-  name                         = "stucentsapp1"
+  name                         = "stucents-${var.environment}-app"
   container_app_environment_id = azurerm_container_app_environment.env.id
   resource_group_name          = azurerm_resource_group.rg.name
   revision_mode                = "Single"

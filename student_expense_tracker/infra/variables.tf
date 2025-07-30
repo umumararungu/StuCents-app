@@ -13,3 +13,14 @@ variable "github_branch" {
   type        = string
   default     = "main"
 }
+
+variable "environment" {
+  description = "Deployment environment (staging, prod)"
+  type        = string
+}
+
+variable "location" {
+  description = "Azure region"
+  type        = string
+  default     = "francecentral"
+}

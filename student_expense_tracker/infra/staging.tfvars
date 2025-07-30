@@ -1,0 +1,3 @@
+environment = "staging"
+
+mongo_uri = "mongodb+srv://stuadmin:5dL9qSWYm2mqnluD@cluster0.weiu5bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
