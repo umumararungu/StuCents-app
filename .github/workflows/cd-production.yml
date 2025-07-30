@@ -1,4 +1,4 @@
-name: CD - Deploy StuCents App
+name: CD - Deploy StuCents App Production
 
 on:
   push:
@@ -13,6 +13,8 @@ env:
   CONTAINER_APP_NAME: stucentsapp1
   LOCATION: francecentral
   ACR_LOGIN_SERVER: stucentsregistry.azurecr.io
+  TF_VAR_environment: production
+
 
 jobs:
   deploy:
@@ -35,11 +37,15 @@ jobs:
       working-directory: student_expense_tracker/infra
 
     - name: Terraform Plan
-      run: terraform plan
+      run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars
       working-directory: student_expense_tracker/infra
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve
+      run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
+      working-directory: student_expense_tracker/infra
+    
+    - name: Show Staging App URL
+      run: terraform output -raw container_app_url
       working-directory: student_expense_tracker/infra
 
     - name: Azure ACR login using access token
