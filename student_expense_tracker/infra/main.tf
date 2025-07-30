@@ -53,6 +53,7 @@ resource "azurerm_container_app_environment" "env" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
 }
 
+
 resource "azurerm_container_app" "stucentsapp" {
   name                         = "stucents-${var.environment}-app"
   container_app_environment_id = azurerm_container_app_environment.env.id
