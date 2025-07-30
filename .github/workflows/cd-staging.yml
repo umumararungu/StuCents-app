@@ -39,6 +39,10 @@ jobs:
       run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars
       working-directory: student_expense_tracker/infra
 
+    - name: Terraform Apply
+      run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
+      working-directory: student_expense_tracker/infra
+
     - name: Show Staging App URL
       run: terraform output -raw container_app_url
       working-directory: student_expense_tracker/infra
@@ -61,7 +65,3 @@ jobs:
 
     - name: Push Docker image
       run: docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
-
-    - name: Terraform Apply
-      run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
-      working-directory: student_expense_tracker/infra
