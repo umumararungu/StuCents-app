@@ -53,7 +53,6 @@ resource "azurerm_container_app_environment" "env" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
 }
 
-
 resource "azurerm_container_app" "stucentsapp" {
   name                         = "stucents-${var.environment}-app"
   container_app_environment_id = azurerm_container_app_environment.env.id
@@ -63,9 +62,10 @@ resource "azurerm_container_app" "stucentsapp" {
   template {
     container {
       name   = "stucents"
-      image  = "stucentsregistry.azurecr.io/stucents-app1:latest"
+      image = "${azurerm_container_registry.acr.login_server}/${var.image_name}:${var.image_tag}"
       cpu    = 0.5
       memory = "1Gi"
+
 
       env {
         name  = "MONGO_URI"
