@@ -14,10 +14,10 @@ variable "github_branch" {
   default     = "main"
 }
 
-variable "environment" {
-  description = "Deployment environment (staging, prod)"
-  type        = string
-}
+# variable "environment" {
+#   description = "Deployment environment (staging, prod)"
+#   type        = string
+# }
 
 variable "location" {
   description = "Azure region"
