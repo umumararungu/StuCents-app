@@ -3,7 +3,7 @@ name: CD - Deploy StuCents Staging
 on:
   push:
     branches:
-      - develop
+      - new-developer
 
 env:
   ACR_NAME: stucentsregistry
