@@ -104,3 +104,4 @@ output "container_app_url" {
   value = azurerm_container_app.stucentsapp.latest_revision_fqdn
   description = "The public URL of the deployed StuCents Container App"
 }
+
