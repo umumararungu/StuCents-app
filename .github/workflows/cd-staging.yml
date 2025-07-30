@@ -6,13 +6,13 @@ on:
       - new-developer
 
 env:
-  ACR_NAME: stucentsregistry
+  ACR_NAME: stucentsregistrystaging
+  ACR_LOGIN_SERVER: stucentsregistrystaging.azurecr.io
   IMAGE_NAME: stucents-app1
   IMAGE_TAG: staging
-  RESOURCE_GROUP: stucents-rg
+  RESOURCE_GROUP: stucents-staging-rg
   CONTAINER_APP_NAME: stucentsapp1
   LOCATION: francecentral
-  ACR_LOGIN_SERVER: stucentsregistry.azurecr.io
   TF_VAR_environment: staging
 
 jobs:

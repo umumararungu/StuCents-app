@@ -6,13 +6,13 @@ on:
       - main
 
 env:
-  ACR_NAME: stucentsregistry
+  ACR_NAME: stucentsregistryprod
+  ACR_LOGIN_SERVER: stucentsregistryprod.azurecr.io
   IMAGE_NAME: stucents-app1
   IMAGE_TAG: latest
-  RESOURCE_GROUP: stucents-rg
+  RESOURCE_GROUP: stucents-prod-rg
   CONTAINER_APP_NAME: stucentsapp1
   LOCATION: francecentral
-  ACR_LOGIN_SERVER: stucentsregistry.azurecr.io
   TF_VAR_environment: production
 
 
@@ -69,4 +69,4 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
       working-directory: student_expense_tracker/infra
-      
+
