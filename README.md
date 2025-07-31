@@ -48,3 +48,6 @@ npm install
 npm start
 ```
 
+## Demo Video
+
+https://go.screenpal.com/watch/cTiw21nIz07
