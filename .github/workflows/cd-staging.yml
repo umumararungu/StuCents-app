@@ -11,9 +11,8 @@ env:
   IMAGE_NAME: stucents-app1
   IMAGE_TAG: staging
   RESOURCE_GROUP: stucents-staging-rg
-  CONTAINER_APP_NAME: stucentsapp1
+  CONTAINER_APP_NAME: stucents-staging-app
   LOCATION: francecentral
-  TF_VAR_environment: staging
 
 jobs:
   deploy:

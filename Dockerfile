@@ -1,5 +1,5 @@
 # Use official Node.js base image
-FROM node:18
+FROM node:18-alpine
 
 # Set working directory inside container
 WORKDIR /app

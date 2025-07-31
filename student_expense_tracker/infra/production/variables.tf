@@ -14,20 +14,16 @@ variable "github_branch" {
   default     = "main"
 }
 
-variable "environment" {
-  description = "Deployment environment (staging, prod)"
-  type        = string
-}
 
 variable "location" {
   description = "Azure region"
   type        = string
-  default     = "francecentral"
+  default     = "uaenorth"
 }
 
 variable "image_name" {
   default = "stucents-app1"
 }
 variable "image_tag" {
-  default = "staging"
+  default = "production"
 }
