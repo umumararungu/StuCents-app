@@ -60,7 +60,7 @@ resource "azurerm_container_app_environment" "env" {
 
 resource "azurerm_container_app" "stucentsapp" {
   name                         = "stucents-staging-app"
-  container_app_environment_id = data.azurerm_container_app_environment.shared_env
+  container_app_environment_id = azurerm_container_app_environment.env.id
   resource_group_name          = azurerm_resource_group.rg.name
   revision_mode                = "Single"
 
