@@ -48,3 +48,12 @@ npm install
 npm start
 ```
 
+
+
+## Staging environment (public URL)
+
+https://stucents-staging-app.livelycliff-230c928d.francecentral.azurecontainerapps.io
+
+## Production environment (public URL)
+
+https://stucents-production-app.livelycliff-230c928d.francecentral.azurecontainerapps.io
