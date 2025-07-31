@@ -8,10 +8,10 @@ on:
 env:
   ACR_NAME: stucentsregistryproduction
   ACR_LOGIN_SERVER: stucentsregistryproduction.azurecr.io
-  IMAGE_NAME: stucents-app
+  IMAGE_NAME: stucents-app1
   IMAGE_TAG: production
   RESOURCE_GROUP: stucents-production-rg
-  CONTAINER_APP_NAME: stucentsapp1
+  CONTAINER_APP_NAME: stucents-production-app
   LOCATION: uaenorth
 
 
@@ -44,7 +44,7 @@ jobs:
       run: terraform apply -auto-approve
       working-directory: student_expense_tracker/infra/production
     
-    - name: Show Staging App URL
+    - name: Show Production App URL
       run: terraform output -raw container_app_url
       working-directory: student_expense_tracker/infra/production
 
