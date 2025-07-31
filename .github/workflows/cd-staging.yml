@@ -3,17 +3,16 @@ name: CD - Deploy StuCents Staging
 on:
   push:
     branches:
-      - develop
+      - new-developer
 
 env:
-  ACR_NAME: stucentsregistry
+  ACR_NAME: stucentsregistrystaging
+  ACR_LOGIN_SERVER: stucentsregistrystaging.azurecr.io
   IMAGE_NAME: stucents-app1
   IMAGE_TAG: staging
-  RESOURCE_GROUP: stucents-rg
-  CONTAINER_APP_NAME: stucentsapp1
+  RESOURCE_GROUP: stucents-staging-rg
+  CONTAINER_APP_NAME: stucents-staging-app
   LOCATION: francecentral
-  ACR_LOGIN_SERVER: stucentsregistry.azurecr.io
-  TF_VAR_environment: staging
 
 jobs:
   deploy:
@@ -33,19 +32,19 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      working-directory: student_expense_tracker/infra
+      working-directory: student_expense_tracker/infra/staging
 
     - name: Terraform Plan
-      run: terraform plan -var-file=${{ env.TF_VAR_environment }}.tfvars
-      working-directory: student_expense_tracker/infra
+      run: terraform plan 
+      working-directory: student_expense_tracker/infra/staging
 
     - name: Terraform Apply
-      run: terraform apply -var-file=${{ env.TF_VAR_environment }}.tfvars -auto-approve
-      working-directory: student_expense_tracker/infra
+      run: terraform apply -auto-approve
+      working-directory: student_expense_tracker/infra/staging
 
     - name: Show Staging App URL
       run: terraform output -raw container_app_url
-      working-directory: student_expense_tracker/infra
+      working-directory: student_expense_tracker/infra/staging
 
     - name: Azure ACR login using access token
       run: |
