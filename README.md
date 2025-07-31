@@ -48,7 +48,9 @@ npm install
 npm start
 ```
 
+## Demo Video
 
+https://go.screenpal.com/watch/cTiw21nIz07
 
 ## Staging environment (public URL)
 
@@ -57,3 +59,4 @@ https://stucents-staging-app.livelycliff-230c928d.francecentral.azurecontainerap
 ## Production environment (public URL)
 
 https://stucents-production-app.livelycliff-230c928d.francecentral.azurecontainerapps.io
+https://go.screenpal.com/watch/cTiw21nIz07
