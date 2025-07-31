@@ -1,3 +1,4 @@
 node_modules
 .env
-infra/.terraform
+infra/production/.terraform
+infra/staging/.terraform
