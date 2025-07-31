@@ -46,17 +46,17 @@ resource "azurerm_log_analytics_workspace" "logs" {
   retention_in_days   = 30
 }
 
-# resource "azurerm_container_app_environment" "env" {
-#   name                       = "stucents-staging-env"
-#   location                   = "francecentral"
-#   resource_group_name        = azurerm_resource_group.rg.name
-#   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
-# }
-
-data "azurerm_container_app_environment" "shared_env" {
-  name                = "stucents-staging-env" 
-  resource_group_name = "stucents-staging-rg"   
+resource "azurerm_container_app_environment" "env" {
+  name                       = "stucents-staging-env"
+  location                   = "francecentral"
+  resource_group_name        = azurerm_resource_group.rg.name
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
 }
+
+# data "azurerm_container_app_environment" "shared_env" {
+#   name                = "stucents-staging-env" 
+#   resource_group_name = "stucents-staging-rg"   
+# }
 
 resource "azurerm_container_app" "stucentsapp" {
   name                         = "stucents-staging-app"
